@@ -1,0 +1,2058 @@
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+  /* Start About */
+  .container-footer {
+    grid-template-areas: 
+    'title title'
+    'sosmed logo-footer'
+    'watermark watermark';
+  }
+  /* End About */
+  /* Start Galeri */
+  .container-galeri .content-galeri {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+  }
+  /* End Galeri */
+}
+
+@media screen and (max-width: 576px) {
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans', sans-serif;
+  }
+  .topnav {
+    overflow: hidden;
+    position: fixed;
+    max-width: 100%;
+    height: 80px !important;
+  }
+
+  .topnav a .leftnav {
+    margin-left: 2%;
+  }
+
+  .topnav a .leftnav .logo1 {
+    width: 80px;
+    float: left;
+  }
+
+  .topnav a .leftnav .logo2 {
+    width: 80px;
+    float: left;
+  }
+
+  .topnav a .leftnav .logo1 img {
+    width: 80%;
+    float: left;
+  }
+
+  .topnav a .leftnav .logo2 img {
+    width: 130%;
+  }
+
+  /* ====================================================== */
+  /* Start Sidebar */
+
+  #check:checked ~ .sidebar2{
+    right: 0;
+  }
+
+  .topnav .rightnav .sidebar .sidebar2 ul li i a {
+    float: left;
+    display: block;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 45px;
+  }
+
+  .sidebar2 {
+    position: fixed;
+    background: #f6f4d2;
+    transition: all .5s ease;
+    z-index: 5;
+    width: 9rem;
+  }
+
+  #check:checked ~ label #cancel {
+    right: 7rem;
+}
+  /* End Sidebar */
+  /* ===================================================== */
+  /* Start Home */
+
+  .containerHead .leftHead {
+    margin: 2rem 2rem 0 2rem;
+    width: 85%;
+  }
+
+  .containerHead .leftHead .title div{
+    max-width: 100%;
+  }
+  .carousel {
+    position: relative;
+    width: 85%;
+    box-shadow: 5px 4px 6px rgba(203, 223, 189, 5.64);
+    border-radius: 20px;
+    margin: 3rem auto;
+  }
+
+  .carousel-inner {
+    height: 220px;
+  }
+  .testimonial {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 10vh 5vw;
+    place-items: center;
+  }
+
+  /* End Home */
+  /* ========================================================= */
+  /* Start Menu */
+
+  .search .input-search {
+    width: 87%;
+    margin-left: 5%;
+  }
+
+  .container-menu {
+    /* margin : 1%; */
+    
+    & .collapsible {
+      /* margin: 3% 15%; */
+      background-color: #cbdfbd;
+      color: #444;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1rem;
+      width: 92%;
+      height: 13vh;
+      text-align: center;
+      border-radius: 20px;
+    }
+  
+    & .content-news {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      /* margin: 1rem; */
+      display: none;
+  
+      & section {
+        & .container {
+          & .row {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr;
+            align-items: stretch;
+            
+            & .container-card {
+              padding: 1rem;
+              height: 90vh;
+              & .card {
+                height: 90%;
+                border-radius: 20px;
+                overflow: hidden;
+                background-color: #fff;
+                word-break: break-all;
+  
+                & img {
+                  width: 85vw;
+                  padding: 1rem;
+                  height: 30vh;
+                }
+  
+                & .card-body {
+                  & h3 {
+                    font-size: 1.3rem;
+                    font-weight: 750;
+                    margin: 0.8rem 0;
+                  }
+  
+                  & .isi {
+                    word-break: break-all;
+                    padding: 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+/* End Menu */
+/* ======================== */
+/* start upload resep */
+section .container-form {
+  width: 80%;
+  margin-top: 30%;
+}
+
+.container-img section {
+  margin-bottom: 10%;
+}
+
+  .container-form .title-form {
+    margin-bottom: 5%;
+    margin-top: 10%;
+  }
+
+  .container-form form .container .row {
+    margin: 3% 5%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .box::before {
+    margin: 0 8%;
+  }
+
+  .box select {
+    margin: 0.5rem 1rem;
+  }
+  
+
+  .container-img {
+    overflow: hidden;
+    margin: 5vh auto;
+  }
+
+  .container-img .bg-img {
+    opacity: 0.05;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .container-form .container .row-input {
+    width: 85%;
+  }
+
+  .container-form .container .row-input .row {
+    width: 100%;
+    margin-left: 2.5%;
+  }
+
+  .container-form .container .row-input .row textarea{
+    width: 100%;
+    margin: 1% 0;
+  }
+
+  .container-form form .container .row input#file{
+    margin: 2% 1%;
+  }
+
+
+
+  button {
+    background-color: #f6f4d2;
+    color: black;
+    padding: 14px 20px;
+    margin: 5% 5%;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+  }
+
+  /* end upload resep */
+  /* ===================== */
+  /* Start Masukan */
+
+  .container-form .container .row .textbox textarea {
+    width: 95%;
+  }
+  /* End Masukan */
+  /* ===================================================== */
+  /* Start Profile */
+  #feedback-form {
+    margin: 30% auto;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+            height: 20vh;
+            border-radius: 20px;
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+
+  .content-news-profile, .content-news-ajax {
+    & section {
+      & .container {
+        display: grid;
+        & .row {
+          & .container-card {
+            & .card {
+              width: 80vw;
+              height: 95vh;
+              & img {
+                width: 76vw;
+                margin-left: 0.5rem;
+                margin-top: 1rem;
+                padding: 0;
+                height: 30vh;
+                & .card-body {
+                  & h3 {
+                    
+                  }
+
+                  & .card-button {
+                    width: 80%;
+                  }
+
+                  & .isi {
+
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Profile */
+  /* ===================================================== */
+  /* Start Tesetimoni */
+  .container-testimoni {
+    margin: 5rem auto;
+
+    & .container {
+      margin: 0 1.5rem 0 0;
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+
+          }
+
+          & figcaption {
+            & h2 {
+
+            }
+
+            & blockquote {
+              text-align: justify;
+              padding: 2rem 1rem;
+
+            }
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after{
+
+        }
+      }
+    }
+    /* End Testimoni */
+    /* =================================================== */
+    /* Start Profile */
+    .content-news-profile, .content-news-ajax {
+      & section {
+        & .container {
+          display: grid;
+          grid-template-rows: 1fr auto;
+          & .row {
+            
+            & .container-card {
+              margin: 3rem 0 0 5rem;
+              & .card {
+                width: 90%;
+                height: 100%;
+                & img {
+                  width: 50%;
+                  margin: 2rem 0 0 2rem;
+                  & .card-body {
+                    & h3 {
+                      
+                    }
+  
+                    & .card-button {
+                      width: 80%;
+                    }
+  
+                    & .isi {
+  
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* Start Admin */
+  .container-user {
+    margin: 12vh 5vw;
+  }
+  /* End Admin */
+  /* =========================================== */
+  /* Start Detail Resep */
+  .container-detail-resep {
+    & .row-img {
+      /* width: 0; */
+      & .col {
+        /* width: 40vw; */
+        & img {
+          height: 20vh;
+        }
+        & .title {
+
+        }
+      }
+      & .button-col {
+
+      }
+    }
+  }
+  /* End Detail Resep */
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 577px) and (max-width: 768px) {
+/* Start Head Body */
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans', sans-serif;
+  }
+
+  .topnav {
+    overflow: hidden;
+    position: fixed;
+    max-width: 100%;
+    height: 80px !important;
+  }
+
+  .container-img {
+    overflow: hidden;
+  }
+
+  .container-img section {
+    margin: 15% 0;
+  }
+
+  .topnav a .leftnav {
+    max-width: 768px;
+  }
+
+  .topnav a .leftnav .logo2 {
+    float: left;
+  }
+
+  .topnav a .leftnav .logo1 img {
+    width: 80%;
+    float: left;
+    margin-bottom: 20px;
+  }
+
+  body .sidebar2 {
+    float: left;
+  }
+
+  .box::before {
+    margin: 0 60%;
+  }
+
+  .topnav .rightnav .sidebar .sidebar2 ul li i a {
+    float: left;
+    display: block;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+    line-height: 45px;
+  }
+
+  body .sidebar2 {
+    float: left;
+  }
+  
+  .sidebar2 {
+    position: fixed;
+    background: #f6f4d2;
+    transition: all .5s ease;
+    z-index: 5;
+    width: 11rem;
+  }
+  
+  .sidebar2 ul {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  .sidebar2 ul li {
+    list-style: none;
+  }
+  
+  .sidebar2 ul a{
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    font-size: 18px;
+    color: black;
+    border-bottom: 1px solid grey;
+    box-sizing: border-box;
+    transition: 0.4s;
+  }
+  ul li:hover a{
+    padding-right: 50px;
+  }
+  .sidebar2 ul a i{
+    margin-left: 16px;
+  }
+  #check{
+    display: none;
+  }
+  label #btn, label #cancel{
+    position: absolute;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  label #btn{
+    right: 10px;
+    top: 15px;
+    font-size: 35px;
+    color: white;
+    padding: 6px 12px;
+    transition: all .5s;
+  }
+  label #cancel{
+    z-index: 1111;
+    right: -195px;
+    top: 17px;
+    font-size: 30px;
+    color: white;
+    padding: 4px 9px;
+    transition: all 0.5s ease;
+  }
+  #check:checked ~ .sidebar2{
+    right: 0;
+  }
+  #check:checked ~ label #btn{
+    opacity: 0;
+    pointer-events: none;
+  }
+  #check:checked ~ label #cancel{
+    right: 9rem;
+  }
+  #check:checked ~ section{
+    margin-left: 250px;
+  }
+/* End Head Body */
+/* ==================================================== */
+/* Start Home */
+.containerHead .leftHead {
+  margin: 3rem 5rem;
+  width: 80%;
+}
+
+.testimonial {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  margin: 20vh auto;
+
+  & .container {
+    width: 60%
+  }
+}
+
+.carousel {
+  width: 80%;
+  margin: 2rem 5rem;
+
+}
+
+.carousel-inner {
+  width: 100%;
+  height: auto;
+}
+/* End Home */
+/* ====================================================== */
+/* Start Menu */
+.search .input-search {
+  border: 5px solid beige;
+  width: 45%;
+  margin-left: 50%;
+}
+
+.container-menu {
+  margin : 1rem 1rem;
+  
+  & .collapsible {
+    /* margin: 2% 4%; */
+    background-color: #cbdfbd;
+    color: #444;
+    cursor: pointer;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1rem;
+    width: 40vw;
+    height: 12vh;
+    text-align: center;
+    border-radius: 20px;
+  }
+
+  & .content-news {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    display: none;
+
+    & section {
+      & .container {
+        display: grid;
+        place-items: center;
+        padding: 1rem 0;
+        & .row {
+          display: grid;
+          place-items: center;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          & .container-card {
+            width: 80%;
+            height: 80vh;
+            & .card {
+              height: 90%;
+              border-radius: 20px;
+              overflow: hidden;
+              background-color: #fff;
+              word-break: break-all;
+
+              & img {
+                width: 33vw;
+                padding: 1rem;
+                height: 25vh;
+              }
+
+              & .card-body {
+                & h3 {
+                  font-size: 1.3rem;
+                  font-weight: 750;
+                  margin: 0.8rem 0;
+                }
+
+                & .isi {
+                  word-break: break-all;
+                  padding: 1rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* End Menu */
+/* ======================================================== */
+/* Start Upload Resep */
+  .container-img .bg-img {
+    height: 100%;
+  }
+
+  section .container-form {
+    width: 65%;
+    margin: 10% auto;
+  }
+
+
+  .container-form .title-form {
+    margin-top: 5%;
+    margin-bottom: 0;
+  }
+
+  .container-form form .container .row {
+    margin: 3% 5%;
+  }
+
+  .box::before {
+    margin: 0 8%;
+  }
+
+  .container-form .container .row-input .row {
+    width: 95%;
+    margin: 1% 1%;
+  }
+
+  .container-form .container .row-input .row textarea{
+    width: 100%;
+    margin-top: 2%
+  }
+
+  button {
+    background-color: #f6f4d2;
+    color: black;
+    padding: 14px 20px;
+    margin: 3% 5%;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    font-size: 18px;
+    font-weight: 600;
+  }
+/* End Upload Resep */
+/* ======================================================== */
+/* Start Masukan Kritik Saran */
+
+  .container-form .container .row .textbox textarea {
+    width: 95%;
+  }
+
+/* End Masukan Kritik Saran */
+/* ======================================================== */
+  /* Start Profile */
+  #feedback-form {
+    margin: 15% auto;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+            height: 20vh;
+            border-radius: 20px;
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+
+  .content-news-profile, .content-news-ajax {
+
+    & section {
+      & .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        & .row {
+          & .container-card {
+            & .card {
+              width: 40vw;
+              height: 90vh;
+              margin-top: 2rem;
+              & img {
+                width: 32vw;
+                margin-top: 2rem;
+                margin-left: 1rem;
+                padding: 1rem;
+                height: 25vh;
+                & .card-body {
+                  & h3 {
+                    
+                  }
+
+                  & .card-button {
+                    width: 80%;
+                  }
+
+                  & .isi {
+
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Profile */
+  /* ============================================================ */
+  /* Start Testimoni */
+  .container-testimoni {
+    margin: 5rem 3rem 0 1rem;
+    & .container{
+      padding: 2rem 1rem 0 1rem;
+      & .row {
+        & figure.snip1390{
+          & .profile {
+
+          }
+
+          & figcaption {
+            & h2 {
+
+            }
+
+            & blockquote {
+              padding: 2rem 1rem;
+              text-align: justify;
+
+            }
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after{
+
+        }
+      }
+    }
+  }
+  /* End Testimoni */
+  /* ==================================================== */
+  /* Start Admin */
+  .container-user {
+    margin: 12vh 5vw;
+  }
+  /* End Admin */
+  /* ==================================================== */
+  /* Start Detail Resep */
+  .container-detail-resep {
+    & .row-img {
+      /* width: 0; */
+      & .col {
+        /* width: 40vw; */
+        & img {
+          height: 40vh;
+        }
+        & .title {
+
+        }
+      }
+      & .button-col {
+
+      }
+    }
+  }
+  /* End Detail Resep */
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  /* Start Head Body */
+
+  .topnav {
+    overflow: hidden;
+    position: fixed;
+    max-width: 100%;
+    height: 80px !important;
+  }
+
+  .topnav a .leftnav {
+    max-width: 992;
+  }
+
+  .topnav a .leftnav .logo2 {
+    float: left;
+  }
+
+  .topnav a .leftnav .logo1 img {
+    width: 80%;
+    float: left;
+    margin-bottom: 20px;
+  }
+
+  /* End Head Body */
+  /* ====================================================== */
+  /* Start Sidebar */
+  #check:checked ~ label #cancel {
+    right: 11rem;
+  }
+
+  .sidebar2 {
+    width: 13rem;
+  }
+  /* End Sidebar */
+  /* ====================================================== */
+  /* Start Home */
+  .container-img .bg-img {
+    height: 100%;
+  }
+  .containerHead .leftHead {
+    width: 80%;
+    margin: 10% auto 0 auto;
+  }
+
+  .carousel {
+    width: 90%;
+  }
+
+  /* End Home */
+  /* ============================================================== */
+  /* Start Profile */
+  #feedback-form {
+    margin: 15% auto 10% auto;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+            height: 20vh;
+            border-radius: 20px;
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+
+  .content-news-profile, .content-news-ajax {
+    & section {
+      & .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        & .row {
+          & .container-card {
+            & .card {
+              width: 40vw;
+              height: 95vh;
+              margin-top: 2rem;
+              & img {
+                width: 32vw;
+                margin-top: 2rem;
+                margin-left: 1rem;
+                padding: 1rem;
+                height: 25vh;
+                & .card-body {
+                  & h3 {
+                    
+                  }
+
+                  & .card-button {
+                    width: 80%;
+                  }
+
+                  & .isi {
+
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Profile */
+  /* ===================================================== */
+  /* Start Menu */
+  .search .input-search {
+    border: 5px solid beige;
+    width: 50%;
+    margin-left: 47%;
+  }
+  
+  .container-menu {
+    margin : 0 2% 1%;
+    
+    & .collapsible {
+      /* margin: 3% 9%; */
+      background-color: #cbdfbd;
+      color: #444;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1rem;
+      width: 41vw;
+      height: 13vh;
+      text-align: center;
+      border-radius: 20px;
+    }
+  
+    & .content-news {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      display: none;
+  
+      & section {
+        & .container {
+          & .row {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+            
+            & .container-card {
+              height: 90vh;
+              & .card {
+                width: 80%;
+                height: 90%;
+                border-radius: 20px;
+                overflow: hidden;
+                margin: 2rem 0 1rem 2rem;
+                padding: 0.8rem;
+                background-color: #fff;
+                word-break: break-all;
+  
+                & img {
+                  width: 35vw;
+                  /* margin-left: 1rem; */
+                  padding: 1rem;
+                  height: 30vh;
+                }
+  
+                & .card-body {
+                  & h3 {
+                    font-size: 1.3rem;
+                    font-weight: 750;
+                    margin: 0.8rem 0;
+                  }
+  
+                  & .isi {
+                    word-break: break-all;
+                    padding: 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Menu */
+  /* =========================================================== */
+  /* Start Upload Resep */
+  section .container-form {
+    width: 60%;
+    margin: 12% auto;
+  }
+
+  .container-form form .container .row {
+    margin: 3% 3%;
+  }
+
+  .container-form .container .row-input .row {
+    width: 95%;
+    margin: 0% 1%;
+  }
+
+  .container-form .container .row-input .row textarea{
+    width: 100%;
+    margin: 0.2% 0.2%;
+  }
+
+  .container-form .container .row .textbox textarea {
+    width: 95%;
+  }
+
+  button {
+    background-color: #f6f4d2;
+    color: black;
+    padding: 14px 20px;
+    /* margin: 3% 5%; */
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  /* End Upload Resep */
+  /* ===================================================== */
+  /* Start Testimoni */
+  .container-testimoni {
+    margin: 5rem auto;
+
+    & .container {
+      margin: 0 2rem 0 0;
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+
+          }
+
+          & figcaption {
+            & h2 {
+
+            }
+
+            & blockquote {
+              text-align: justify;
+              padding: 2rem 1rem;
+
+            }
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+  /* End Testimoni */
+  /* ==================================================== */
+  /* Start Admin */
+  .container-user {
+    margin: 12vh 5vw;
+  }
+  /* End Admin */
+  /* ==================================================== */
+  /* Start Galeri */
+    .container-galeri .content-galeri {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: repeat(4, auto);
+    }
+  /* End Galeri */
+  /* ================================================== */
+  /* Start Detail Resep */
+  .container-detail-resep {
+    & .row-img {
+      /* width: 0; */
+      & .col {
+        /* width: 40vw; */
+        & img {
+          height: 35vh;
+        }
+        & .title {
+
+        }
+      }
+      & .button-col {
+
+      }
+    }
+  }
+  /* End Detail Resep */
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+
+  .topnav {
+    overflow: hidden;
+    position: fixed;
+    max-width: 100%;
+    height: 80px !important;
+  }
+
+  .topnav a .leftnav .logo2 {
+    float: left;
+  }
+
+  .topnav a .leftnav .logo1 img {
+    width: 80%;
+    float: left;
+    margin-bottom: 20px;
+  }
+   /* =========================================================== */
+  /* Start Sidebar */
+
+  #check:checked ~ .sidebar2{
+    right: 0;
+  }
+
+  .topnav .rightnav .sidebar .sidebar2 ul li i a {
+    float: left;
+    display: block;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    line-height: 3rem;
+  }
+
+  .sidebar2 {
+    position: fixed;
+    background: #f6f4d2;
+    transition: all .5s ease;
+    z-index: 5;
+    width: 13rem;
+  }
+
+  #check:checked ~ label #cancel{
+    right: 11rem;
+  }
+  /* End Sidebar */
+  /* ===================================================== */
+  /* Start Home */
+  .containerHead .leftHead { 
+    width: 85%;
+    margin: 5rem 3rem;
+  }
+
+  .carousel {
+    margin: 5rem 10rem;
+    width: 70%;
+  }
+  /* End Home */
+  /* ===================================================== */
+  /* Start Menu */
+  .search .input-search {
+    border: 5px solid beige;
+    width: 45%;
+    margin-left: 52%;
+  }
+  
+  .container-menu {
+    margin : 0 3% 2%;
+    & .collapsible {
+      /* margin: 3% 6%; */
+      background-color: #cbdfbd;
+      color: #444;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1rem;
+      width: 40vw;
+      height: 17vh;
+      text-align: center;
+      border-radius: 20px;
+    }
+  
+    & .content-news {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      display: none;
+  
+      & section {
+        & .container {
+          padding: 1rem;
+          & .row {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            
+            & .container-card {
+              height: 100vh;
+              & .card {
+                height: 90%;
+                border-radius: 20px;
+                overflow: hidden;
+                background-color: #fff;
+                word-break: break-all;
+  
+                & img {
+                  width: 40vw;
+                  margin-left: 1rem;
+                  margin-top: 1rem;
+                  padding: 1rem;
+                  height: 36vh;
+                }
+  
+                & .card-body {
+                  & h3 {
+                    font-size: 1.3rem;
+                    font-weight: 750;
+                    margin: 0.8rem 0;
+                  }
+  
+                  & .isi {
+                    word-break: break-all;
+                    padding: 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Menu */
+  /* ===================================================== */
+  /* Start Upload Resep */
+  .container-img {
+    padding: 2rem 0 5rem 0;
+  }
+  .container-img .bg-img {
+    height: 100%;
+  }
+  .container-img section {
+    margin: 8% auto;
+  }
+
+  .container-form {
+    width: 50%;
+  }
+
+  .container-form form .container .row {
+    margin: 2% 3%;
+    width: 93%;
+  }
+
+  .container-form .container .row-input .row {
+    width: 97%;
+    margin: 0.5rem 0.5rem;
+  }
+
+  .container-form .container .row-input .row textarea{
+    width: 100%;
+  }
+
+  .container-form form .container .row input#file{
+    margin: 0.4rem 0.2rem;
+  }
+  /* End Upload Resep & Masukan */
+  /* ========================================================= */
+  /* Start Testimoni */
+  .container-testimoni {
+    padding: 0 1rem 0 1rem;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+
+          }
+
+          & figcaption {
+            & h2 {
+
+            }
+
+            & blockquote {
+              padding: 2rem 2rem;
+              text-align: justify;
+
+            }
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+
+  /* End Testimoni */
+  /* ========================================================= */
+  /* Start Profile */
+  #feedback-form {
+    margin: 15% auto;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+            height: 20vh;
+            border-radius: 20px;
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+
+  .content-news-profile, .content-news-ajax {
+    & section {
+      & .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        & .row {
+          & .container-card {
+            & .card {
+              width: 40vw;
+              height: 110vh;
+              margin-top: 2rem;
+              & img {
+                width: 37vw;
+                /* margin-top: 1rem; */
+                /* margin-left: 2rem; */
+                margin-right: 0;
+                padding: 1rem;
+                height: 40vh;
+                & .card-body {
+                  & h3 {
+                    
+                  }
+
+                  & .card-button {
+                    width: 80%;
+                  }
+
+                  & .isi {
+
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Profile */
+  /* ===================================================== */
+  /* Start Detail Resep */
+  .container-detail-resep {
+    & .row-img {
+      /* width: 0; */
+      & .col {
+        /* width: 40vw; */
+        & img {
+          height: 55vh;
+        }
+        & .title {
+
+        }
+      }
+      & .button-col {
+
+      }
+    }
+  }
+  /* End Detail Resep */
+
+  button {
+    background-color: #f6f4d2;
+    color: black;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+  .topnav {
+    overflow: hidden;
+    position: fixed;
+    max-width: 100%;
+    height: 80px !important;
+  }
+
+  .topnav a .leftnav .logo2 {
+    float: left;
+  }
+
+  .topnav a .leftnav .logo1 img {
+    width: 80%;
+    float: left;
+    margin-bottom: 20px;
+  }
+  /* =========================================================== */
+  /* Start Sidebar */
+
+  #check:checked ~ .sidebar2{
+    right: 0;
+  }
+
+  .topnav .rightnav .sidebar .sidebar2 ul li i a {
+    float: left;
+    display: block;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 3rem;
+  }
+
+  .sidebar2 {
+    position: fixed;
+    background: #f6f4d2;
+    transition: all .5s ease;
+    z-index: 5;
+    width: 13rem;
+  }
+
+  #check:checked ~ label #cancel{
+    right: 11rem;
+  }
+  /* End Sidebar */
+  /* ====================================================== */
+  /* Start Home */
+  .carousel {
+    width: 60%;
+  }
+  /* End Home */
+  /* ====================================================== */
+  /* Start Menu */
+  .search .input-search {
+    border: 5px solid beige;
+    width: 50%;
+    margin-left: 45%;
+  }
+  
+  .container-menu {
+    margin : 0 3% 1%;
+    
+    & .collapsible {
+      /* margin: 3% 8%; */
+      background-color: #cbdfbd;
+      color: #444;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1rem;
+      width: 40vw;
+      height: 15vh;
+      text-align: center;
+      border-radius: 20px;
+    }
+  
+    & .content-news {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      display: none;
+  
+      & section {
+        & .container {
+          & .row {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            align-items: stretch;
+            
+            & .container-card {
+              margin: 1rem;
+              height: 100vh;
+              & .card {
+                height: 90%;
+                border-radius: 20px;
+                overflow: hidden;
+                margin: 4% 0 2% 8%;
+                padding: 0.8rem;
+                background-color: #fff;
+                word-break: break-all;
+  
+                & img {
+                  width: 34vw;
+                  margin-top: 1rem;
+                  margin-left: 1rem;
+                  padding: 1rem;
+                  height: 34vh;
+                }
+  
+                & .card-body {
+                  & h3 {
+                    font-size: 1.3rem;
+                    font-weight: 750;
+                    margin: 0.8rem 0;
+                  }
+  
+                  & .isi {
+                    word-break: break-all;
+                    padding: 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Menu */
+  /* ====================================================== */
+  /* Start Upload Resep */
+  .container-img .bg-img {
+    height: 100%;
+  }
+  section .container-form {
+    width: 50%;
+    margin: 10% auto;
+  }
+
+  .container-form form .container{
+    margin: 3% 3%;
+  }
+
+  .container-form form .container .row {
+    margin: 1% 1%;
+  }
+
+  .container-form .container .row-input .row {
+    width: 95%;
+    margin: 1% 1%;
+    padding-top: 2%;
+  }
+  /* End Upload Resep */
+  /* ============================================================== */
+  /* Start Masukan */
+
+  .container-form .container .row-input .row textarea{
+    width: 100%;
+    margin: 0% 1%;
+  }
+
+  /* End Masukan */
+  /* ============================================================== */
+  /* Start Testimoni */
+  .container-testimoni {
+    padding: 0 1rem 0 1rem;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+
+          }
+
+          & figcaption {
+            & h2 {
+
+            }
+
+            & blockquote {
+              padding: 2rem 2rem;
+              text-align: justify;
+
+            }
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+  /* End Testimoni */
+  /* =============================================================== */
+  /* Start Profile */
+  #feedback-form {
+    margin: 10% auto;
+
+        & .container {
+          & .row {
+            & figure.snip1390 {
+              & .profile {
+                height: 20vh;
+                border-radius: 20px;
+              }
+            }
+    
+            & figure.snip1390 *,
+            figure.snip1390 *:before,
+            figure.snip1390 *:after {
+    
+            }
+          }
+        }
+    }
+
+  .content-news-profile, .content-news-ajax {
+    & section {
+      & .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        & .row {
+          & .container-card {
+            & .card {
+              width: 40vw;
+              height: 110vh;
+              margin-top: 2rem;
+              & img {
+                width: 30vw;
+                margin-top: 2rem;
+                margin-left: 4rem;
+                padding: 1rem;
+                height: 40vh;
+                & .card-body {
+                  & h3 {
+                    
+                  }
+
+                  & .card-button {
+                    width: 80%;
+                  }
+
+                  & .isi {
+
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Profile */
+  /* ===================================================== */
+  /* Start Detail Resep */
+  .container-detail-resep {
+    & .row-img {
+      /* width: 0; */
+      & .col {
+        /* width: 40vw; */
+        & img {
+          height: 50vh;
+        }
+        & .title {
+
+        }
+      }
+      & .button-col {
+
+      }
+    }
+  }
+  /* End Detail Resep */
+}
+
+
+/* ======================================================= */
+
+@media screen and (min-width: 1401px) and (max-width: 2560px) {
+  .topnav {
+    overflow: hidden;
+    position: fixed;
+    max-width: 100%;
+    height: 80px !important;
+  }
+
+  .topnav a .leftnav .logo2 {
+    float: left;
+  }
+
+  .topnav a .leftnav .logo1 img {
+    width: 80%;
+    float: left;
+    margin-bottom: 20px;
+  }
+  /* ====================================================== */
+  /* Start Sidebar */
+
+  #check:checked ~ .sidebar2{
+    right: 0;
+  }
+
+  .topnav .rightnav .sidebar .sidebar2 ul li i a {
+    float: left;
+    display: block;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.3rem;
+    line-height: 3.5rem;
+  }
+
+  .sidebar2 {
+    position: fixed;
+    background: #f6f4d2;
+    transition: all .5s ease;
+    z-index: 5;
+  }
+  /* End Sidebar */
+  /* ===================================================== */
+  /* Start Home */
+
+  .containerHead .leftHead {
+    width: 85%;
+    margin: 2rem 5rem;
+  }
+  
+  .containerHead .leftHead .title div{
+    max-width: 100%;
+  }
+
+  .carousel {
+    position: relative;
+    width: 50%;
+    box-shadow: 5px 4px 6px rgba(203, 223, 189, 5.64);
+    border-radius: 20px;
+    margin: 3% auto;
+  }
+
+  .carousel-inner {
+    height: 100%;
+  }
+  .testimonial {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 1rem;
+    margin: 10vh 5vw;
+    place-items: center;
+  }
+
+  /* End Home */
+  /* ====================================================== */
+  /* Start Menu */
+  .search .input-search {
+    border: 5px solid beige;
+    width: 40%;
+    margin-left: 58%;
+  }
+  
+  .container-menu {
+    margin : 0 3% 1%;
+    
+    & .collapsible {
+      /* margin: 3% 11%; */
+      background-color: #cbdfbd;
+      color: #444;
+      cursor: pointer;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 1.5rem;
+      width: 40vw;
+      height: 15vh;
+      text-align: center;
+      border-radius: 20px;
+    }
+  
+    & .content-news {
+      overflow: hidden;
+      background-color: #f1f1f1;
+      display: none;
+  
+      & section {
+        & .container {
+          padding: 1rem;
+          & .row {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            
+            & .container-card {
+              height: 100vh;
+              & .card {
+                height: 90%;
+                border-radius: 20px;
+                overflow: hidden;
+                background-color: #fff;
+                word-break: break-all;
+  
+                & img {
+                  width: 30vw;
+                  margin-top: 2rem;
+                  margin-left: 6rem;
+                  padding: 1rem;
+                  height: 40vh;
+                }
+  
+                & .card-body {
+                  & h3 {
+                    font-size: 1.3rem;
+                    font-weight: 750;
+                    margin: 0.8rem 0;
+                  }
+  
+                  & .isi {
+                    word-break: break-all;
+                    padding: 1rem;
+                    font-size: 1rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Menu */
+  /* ====================================================== */
+  /* Start Upload Resep */
+
+  .container-img .bg-img {
+    height: 100%;
+  }
+  section .container-form {
+    width: 60%;
+    margin: 10% auto;
+  }
+
+  .container-form .title-form {
+    margin-bottom: 0;
+  }
+
+  .container-form form .container .row {
+    width: 95%;
+    margin: 1% 2%;
+  }
+
+  .container-form .container .row-input .row {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .container-form .container .row-input .row textarea{
+    width: 99.93%;
+    margin: 0.4%;
+  }
+
+  .container-form form .container .row input#file{
+    margin: 0.5rem 0.2rem;
+  }
+  /* End Upload Resep */
+  /* ====================== */
+  /* Start Masukan */
+
+  .container-form .container .row .textbox textarea {
+    width: 100%;
+    margin: 0 0.5%;
+  }
+
+  /* End Masukan */
+  /* ========================================================= */
+  /* Start Testimoni */
+  .container-testimoni {
+    padding: 0 2rem 0 0;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+
+          }
+
+          & figcaption {
+            & h2 {
+
+            }
+
+            & blockquote {
+              padding: 2rem 2rem;
+              text-align: justify;
+          }
+
+            }
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  
+  /* End Testimoni */
+  /* ========================================================= */
+  /* Start Profile */
+
+  #feedback-form {
+    margin: 10rem auto 5rem auto;
+
+    & .container {
+      & .row {
+        & figure.snip1390 {
+          & .profile {
+            height: 20vh;
+            border-radius: 20px;
+          }
+        }
+
+        & figure.snip1390 *,
+        figure.snip1390 *:before,
+        figure.snip1390 *:after {
+
+        }
+      }
+    }
+  }
+  .content-news-profile, .content-news-ajax {
+    & section {
+      & .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        place-items: center;
+        & .row {
+          
+          & .container-card {
+            & .card {
+              width: 40vw;
+              height: 110vh;
+              margin: 2rem;
+              & img {
+                width: 30vw;
+                margin-top: 2rem;
+                margin-left: 4rem;
+                padding: 1rem;
+                height: 40vh;
+                & .card-body {
+                  & h3 {
+                    
+                  }
+
+                  & .card-button {
+                    width: 80%;
+                  }
+
+                  & .isi {
+
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /* End Profile */
+  /* ===================================================== */
+  /* Start Detail Resep */
+  .container-detail-resep {
+    & .row-img {
+      /* width: 0; */
+      & .col {
+        /* width: 40vw; */
+        & img {
+          height: 60vh;
+        }
+        & .title {
+
+        }
+      }
+      & .button-col {
+
+      }
+    }
+  }
+  /* End Detail Resep */
+}
+
+  button {
+    background-color: #f6f4d2;
+    color: black;
+    padding: 14px 20px;
+    margin: 2% 2% 2% 4%;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    font-size: 1rem;
+  }
