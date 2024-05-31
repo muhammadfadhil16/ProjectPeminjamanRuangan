@@ -42,7 +42,7 @@ if (isset($message)) {
 </table>
 
 <h2>Pilih Ruangan dan Waktu Peminjaman</h2>
-<form action="check_booking.php" method="POST">
+<form action="<?php echo BASE_URL."module/BookingRuangan/proses_booking.php";?>" method="POST">
     <label for="room">Pilih Ruangan:</label>
     <select name="room_id" id="room" required>
         <?php
@@ -53,11 +53,14 @@ if (isset($message)) {
         }
         ?>
     </select>
+    <input type="hidden" value="<?php echo $id_user;?>" name="id_user">
     <label for="date">Tanggal Peminjaman:</label>
     <input type="date" name="tanggal_peminjaman" id="date" required>
     <label for="start">Jam Mulai:</label>
     <input type="time" name="jam_mulai" id="start" required>
     <label for="end">Jam Selesai:</label>
     <input type="time" name="jam_selesai" id="end" required>
+    <label for="keperluan">Keperluan:</label>
+    <input type="text" name="keperluan" id="keperluan" required>
     <button type="submit" name="submit">Book Room</button>
 </form>

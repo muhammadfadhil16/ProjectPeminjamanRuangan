@@ -6,6 +6,7 @@
 
   $page = isset($_GET['page']) ? $_GET['page'] : 'Page, not found';
 	$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false;
+
 ?>
 
 
@@ -46,7 +47,7 @@
                     </a>
     <?php
     }
-    else {
+    if(!$id_user && $page != "module/user/login") {
       echo $id_user;
       ?>
       <a href="<?php echo BASE_URL."index.php?page=module/user/login"; ?>">

@@ -1,3 +1,3 @@
 <?php
-    define("BASE_URL", "http://localhost/fikri/");
+    define("BASE_URL", "http://localhost/ProjectPeminjamanRuangan/");
 ?>
