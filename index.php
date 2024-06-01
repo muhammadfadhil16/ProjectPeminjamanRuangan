@@ -6,7 +6,7 @@
 
   $page = isset($_GET['page']) ? $_GET['page'] : 'Page, not found';
 	$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false;
-
+  
 ?>
 
 

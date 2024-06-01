@@ -1,28 +1,41 @@
-<footer>
-    <div class="container-footer">
-        <div class="footer title">
-            <h2>About</h2>
-            <p>Selamat berkreasi bersama CookIes!</p>
+<footer class="bg-dark text-white mt-5">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-3">Tentang Kami</h2>
+                <p>Selamat datang di sistem peminjaman ruangan Fakultas Teknik. Kami hadir untuk memudahkan Anda dalam melakukan pemesanan dan pengelolaan ruangan secara online.</p>
+            </div>
+            <div class="col-md-6 text-md-end mt-4 mt-md-0">
+                <ul class="list-inline social-icons">
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="footer sosmed">
-            <ul class="sub-sosmed">
-                <li class="ig">
-                    <i class="fa-brands fa-instagram fa-2xl">
-                        <a href="https://www.instagram.com/ra.rra_/"></a>
-                    </i>
-                </li>
-                <li class="gmail">
-                    <i class="fa-solid fa-envelope fa-2xl">
-                        <a href="mailto:222111943@stis.ac.id"></a>
-                    </i>
-                </li>
-                <li class="wa">
-                    <i class="fa-brands fa-whatsapp fa-2xl">
-                        <a
-                        href="https://api.whatsapp.com/send?phone=6281217409819"
-                        ></a>
-                    </i>
-                </li>
-            </ul>
-        </div>
+    </div>
 </footer>
+
+<style>
+    footer {
+        background-color: #002d72;
+        color: #fff;
+        padding: 40px 0;
+    }
+
+    .social-icons li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .social-icons li a {
+        color: #fff;
+        font-size: 20px;
+        transition: color 0.3s ease;
+    }
+
+    .social-icons li a:hover {
+        color: #f1f1f1;
+    }
+</style>
