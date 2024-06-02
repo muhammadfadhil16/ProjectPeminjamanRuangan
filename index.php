@@ -35,16 +35,36 @@
 
     <link rel="icon" href="images/logopng.png" type="image/icon type">
 
-    <title>CookIes</title>
+    <title>BookingRoomFTUNTAN</title>
+    <style>
+  /* Styling for the logout button */
+  a {
+    text-decoration: none;
+  }
+
+  button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #2980b9;
+  }
+</style>
   </head>
   <body>
     <div class="content">
       <?php
-    if($id_user){
+    if($id_user && $page != "module/user/login"){
       ?>
       <a href="<?php echo BASE_URL."index.php?page=module/user/logout"; ?>">
-                        <button type="submit">Logout</button>
-                    </a>
+            <button type="submit">Logout</button>
+      </a>
     <?php
     }
     if(!$id_user && $page != "module/user/login") {

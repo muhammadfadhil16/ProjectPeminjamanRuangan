@@ -7,110 +7,117 @@
     <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS Anda -->
     <style>
         /* General styles */
-body {
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 0;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Header styles */
-h1 {
-text-align: center;
-margin-top: 30px;
-}
+        /* Header styles */
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
 
-/* Table styles */
-table {
-width: 100%;
-border-collapse: collapse;
-margin-top: 20px;
-}
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
 
-th, td {
-padding: 8px;
-text-align: left;
-border-bottom: 1px solid #ddd;
-}
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
 
-th {
-background-color: #f2f2f2;
-}
+        th {
+            background-color: #f2f2f2;
+        }
 
-/* Form styles */
-form {
-margin-top: 20px;
-display: flex;
-flex-direction: column;
-max-width: 400px;
-margin-left: auto;
-margin-right: auto;
-}
+        /* Form styles */
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-label {
-margin-top: 10px;
-}
+        label {
+            margin-top: 10px;
+        }
 
-input[type="date"],
-input[type="time"],
-input[type="text"],
-select {
-margin-top: 5px;
-padding: 8px;
-border: 1px solid #ccc;
-border-radius: 4px;
-box-sizing: border-box;
-}
+        input[type="date"],
+        input[type="time"],
+        input[type="text"],
+        select {
+            margin-top: 5px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-button[type="submit"] {
-margin-top: 20px;
-padding: 10px;
-border: none;
-background-color: #002d72;
-color: #fff;
-cursor: pointer;
-}
+        button[type="submit"] {
+            margin-top: 20px;
+            padding: 10px;
+            border: none;
+            background-color: #002d72;
+            color: #fff;
+            cursor: pointer;
+        }
 
-button[type="submit"]:hover {
-background-color: #001a3d;
-}
+        button[type="submit"]:hover {
+            background-color: #001a3d;
+        }
 
-/* Notification styles */
-.notification {
-padding: 10px;
-margin-bottom: 15px;
-border-radius: 4px;
-opacity: 0;
-transform: translateY(-20px);
-transition: opacity 0.5s, transform 0.5s;
-position: fixed;
-top: 20px;
-right: 20px;
-z-index: 1000;
-max-width: 300px;
-}
+        /* Notification styles */
+        .notification {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s, transform 0.5s;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 300px;
+        }
 
-.notification.show {
-opacity: 1;
-transform: translateY(0);
-}
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.success {
-color: #3c763d;
-background-color: #dff0d8;
-border-color: #d6e9c6;
-}
+        .success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
 
-.error {
-color: #a94442;
-background-color: #f2dede;
-border-color: #ebccd1;
-}
-
+        .error {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
     </style>
 </head>
 <body>
     <h1>Peminjaman Ruangan Fakultas Teknik</h1>
     <div id="notification" class="notification"></div> <!-- Elemen notifikasi -->
+
+    <label for="capacityFilter">Filter berdasarkan kapasitas:</label>
+    <select id="capacityFilter" onchange="filterRooms()">
+        <option value="all">Semua Kapasitas</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+    </select>
 
     <table>
         <thead>
@@ -119,7 +126,7 @@ border-color: #ebccd1;
                 <th>Kapasitas</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="roomTable">
         <?php
             $notif = isset($_GET['notif']) ? $_GET['notif'] : false;
             $message = '';
@@ -149,7 +156,7 @@ border-color: #ebccd1;
                 $sudah_dipinjam = mysqli_num_rows($peminjaman_query) > 0;
 
                 // Tampilkan informasi ruangan dan notifikasi
-                echo '<tr>';
+                echo '<tr data-capacity="' . $row_ruangan['kapasitas'] . '">';
                 echo '<td>' . $row_ruangan['nama_ruangan'] . '</td>';
                 echo '<td>' . $row_ruangan['kapasitas'] . '</td>';
                 echo '</tr>';
@@ -196,6 +203,19 @@ border-color: #ebccd1;
         <?php if ($notif) { ?>
             showNotification('<?php echo $message; ?>', '<?php echo $notif == 'tidaktersedia' || $notif == 'jam' || $notif == 'gagal' ? 'error' : 'success'; ?>');
         <?php } ?>
+
+        function filterRooms() {
+            const filter = document.getElementById('capacityFilter').value;
+            const rows = document.querySelectorAll('#roomTable tr');
+            rows.forEach(row => {
+                const capacity = row.getAttribute('data-capacity');
+                if (filter === 'all' || filter === capacity) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
     </script>
     <a href="<?php echo BASE_URL."index.php?page=home"; ?>"><button type="submit" style="border-radius: 12px;">Kembali</button></a>
 </body>
