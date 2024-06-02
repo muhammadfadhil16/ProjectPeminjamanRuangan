@@ -27,6 +27,9 @@
       rel="stylesheet"
       href="path/to/font-awesome/css/font-awesome.min.css"
     />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"
+    >
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,6 +38,7 @@
 
     <link rel="icon" href="images/logopng.png" type="image/icon type">
 
+<<<<<<< HEAD
     <title>BookingRoomFTUNTAN</title>
     <style>
   /* Styling for the logout button */
@@ -56,6 +60,9 @@
     background-color: #2980b9;
   }
 </style>
+=======
+    <title>Peminjaman Ruangan Fakultas Teknik</title>
+>>>>>>> 92bfdcaff5cb03a1618798d791fd3943c0a467b3
   </head>
   <body>
     <div class="content">
@@ -63,15 +70,20 @@
     if($id_user && $page != "module/user/login"){
       ?>
       <a href="<?php echo BASE_URL."index.php?page=module/user/logout"; ?>">
+<<<<<<< HEAD
             <button type="submit">Logout</button>
       </a>
+=======
+                        <button type="submit" class="container-fluid">Logout</button>
+                    </a>
+>>>>>>> 92bfdcaff5cb03a1618798d791fd3943c0a467b3
     <?php
     }
     if(!$id_user && $page != "module/user/login") {
       echo $id_user;
       ?>
       <a href="<?php echo BASE_URL."index.php?page=module/user/login"; ?>">
-                        <button type="submit">Login</button>
+                        <button type="submit" class="container-fluid">Login</button>
                     </a>
     <?php
     }

@@ -5,8 +5,8 @@ if(!$id_user){
   ?>
 <section>
         <div class="container-img-home">
-            <img src="images/home/home3.jpg" class="bg-img" alt="Gambar Latar Belakang" />
-            <div class="containerHead">
+        <img src="images/TeknikInformatikaUNTAN.jpg" class="bg-img pe-none object-fit-cover" alt="Gambar Latar Belakang" />
+        <div class="containerHead">
                 <div class="leftHead">
                     <div class="title">
                         <h5>Booking Ruangan Fakultas Teknik</h5>
