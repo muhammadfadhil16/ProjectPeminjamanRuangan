@@ -10,20 +10,24 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false;
 $page = basename($_SERVER['PHP_SELF']);
-$hideBookingButtons = isset($_SESSION['id_user']) || $page == 'login.php' || $page == 'register.php';
 
-function displayBookingButtons($hideBookingButtons) {
-    if (!$hideBookingButtons) {
+// Perubahan pada fungsi displayBookingButtons
+function displayBookingButtons($id_user, $page) {
+    // Jika pengguna telah login dan bukan di halaman login/register
+    if ($id_user && $page != 'login.php' && $page != 'register.php') {
         ?>
         <li class="nav-item">
             <a class="nav-link" href="<?php echo BASE_URL . 'index.php?page=module/BookingRuangan/user_bookings'; ?>">Booking Ruangan</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo BASE_URL . 'index.php?page=module/BookingRuangan/Riwayat_booking'; ?>">Check Status Booking</a>
+            <a class="nav-link" href="<?php echo BASE_URL . 'index.php?page=module/BookingRuangan/Riwayat_booking'; ?>">Check Booking Status</a>
         </li>
         <?php
     }
 }
+
+$hideBookingButtons = $page == 'login.php' || $page == 'register.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -77,24 +81,10 @@ function displayBookingButtons($hideBookingButtons) {
                     Peminjaman Ruangan Fakultas Teknik Universitas Tanjungpura
                 </a>
                 <ul class="navbar-nav d-flex flex-row align-items-center">
-                    <?php if (!$hideBookingButtons) : ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . 'index.php?page=module/BookingRuangan/user_bookings'; ?>">Booking Ruangan</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . 'index.php?page=module/BookingRuangan/Riwayat_booking'; ?>">Check Status Booking</a>
-                        </li>
-                    <?php endif; ?>
+                    <?php displayBookingButtons($id_user, $page); ?>
                     <?php if ($id_user && $page != 'login.php' && $page != 'register.php') : ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <?php displayBookingButtons($hideBookingButtons); ?>
-                                <li><hr class="dropdown-divider"></li>
-                                <form action="<?php echo BASE_URL . "/module/user/logout.php"; ?>" method="post">
-                                    <button type="submit" class="dropdown-item" style="background-color: transparent; border: none;">Logout</button>
-                                </form>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo BASE_URL . "/module/user/logout.php"; ?>">Logout</a>
                         </li>
                     <?php endif; ?>
                 </ul>

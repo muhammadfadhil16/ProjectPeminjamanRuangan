@@ -39,9 +39,6 @@
     <link rel="icon" href="images/logopng.png" type="image/icon type">
 
     <title>BookingRoomFTUNTAN</title>
- 
-
-    <title>Peminjaman Ruangan Fakultas Teknik</title>
   </head>
   <body>
     <div class="content">

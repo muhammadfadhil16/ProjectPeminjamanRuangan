@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 06:45 PM
+-- Generation Time: Jun 03, 2024 at 09:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,38 @@ SET time_zone = "+00:00";
 --
 -- Database: `bookingroom`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `hapus_peminjaman_admin` (IN `p_id_peminjaman` INT)   BEGIN
+    DECLARE v_id_ruangan INT;
+    DECLARE v_id_user INT;
+    DECLARE v_tanggal_peminjaman DATE;
+    DECLARE v_jam_mulai TIME;
+    DECLARE v_jam_selesai TIME;
+    DECLARE v_keperluan TEXT;
+
+    SELECT id_ruangan, id_user, tanggal_peminjaman, jam_mulai, jam_selesai, keperluan
+    INTO v_id_ruangan, v_id_user, v_tanggal_peminjaman, v_jam_mulai, v_jam_selesai, v_keperluan
+    FROM peminjaman
+    WHERE id_peminjaman = p_id_peminjaman;
+
+    DELETE FROM peminjaman WHERE id_peminjaman = p_id_peminjaman;
+
+    INSERT INTO riwayat_pemesanan (id_ruangan, id_user, tanggal_peminjaman, jam_mulai, jam_selesai, keperluan)
+    VALUES (v_id_ruangan, v_id_user, v_tanggal_peminjaman, v_jam_mulai, v_jam_selesai, v_keperluan);
+END$$
+
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `hitung_durasi` (`jam_mulai` TIME, `jam_selesai` TIME) RETURNS DECIMAL(5,2) DETERMINISTIC BEGIN
+    RETURN TIMESTAMPDIFF(MINUTE, jam_mulai, jam_selesai) / 60;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -73,7 +105,8 @@ CREATE TABLE `peminjaman` (
 INSERT INTO `peminjaman` (`id_peminjaman`, `id_ruangan`, `id_user`, `tanggal_peminjaman`, `jam_mulai`, `jam_selesai`, `keperluan`, `status`) VALUES
 (1, 1, 4, '2024-05-02', '14:30:00', '16:00:00', NULL, 'dipinjam'),
 (2, 1, 5, '2024-05-22', '22:07:00', '23:07:00', 'uts', 'dipinjam'),
-(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS', 'dipinjam');
+(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS', 'dipinjam'),
+(4, 4, 6, '2024-06-05', '07:30:00', '11:32:00', 'makan', 'dipinjam');
 
 --
 -- Triggers `peminjaman`
@@ -111,7 +144,25 @@ CREATE TABLE `riwayat_pemesanan` (
 INSERT INTO `riwayat_pemesanan` (`id_riwayat`, `id_ruangan`, `id_user`, `tanggal_peminjaman`, `jam_mulai`, `jam_selesai`, `keperluan`) VALUES
 (1, 1, 5, '2024-05-16', '22:17:00', '23:17:00', 'coding'),
 (2, 1, 5, '2024-05-16', '22:17:00', '23:17:00', 'coding'),
-(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS');
+(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS'),
+(4, 4, 6, '2024-06-05', '07:30:00', '11:32:00', 'makan');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `riwayat_peminjaman_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `riwayat_peminjaman_view` (
+`id_riwayat` int(11)
+,`id_ruangan` int(11)
+,`id_user` int(11)
+,`tanggal_peminjaman` date
+,`jam_mulai` time
+,`jam_selesai` time
+,`keperluan` text
+,`nama_ruangan` varchar(50)
+);
 
 -- --------------------------------------------------------
 
@@ -199,7 +250,17 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `email`, `password`, `role`) VALUES
 (4, 'd1041221017@gmail.com', '202cb962ac59075b964b07152d234b70', ''),
 (5, 'd10141221017@gmail.com', '$2y$10$vi75SyFLcMhpQejV6LBWveBQ6cfE30sAp35HXjAZwASFweScXjqoy', 'mahasiswa'),
-(6, 'user@gmail.com', '$2y$10$xnNDk8UFlup5Dn2qPSjijO1UIhWsBvQYDo19jTPYFpE3Zbp/NXDeO', '');
+(6, 'user@gmail.com', '$2y$10$xnNDk8UFlup5Dn2qPSjijO1UIhWsBvQYDo19jTPYFpE3Zbp/NXDeO', ''),
+(7, 'admin@gmail.com', '2637a5c30af69a7bad877fdb65fbd78b', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `riwayat_peminjaman_view`
+--
+DROP TABLE IF EXISTS `riwayat_peminjaman_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `riwayat_peminjaman_view`  AS SELECT `rp`.`id_riwayat` AS `id_riwayat`, `rp`.`id_ruangan` AS `id_ruangan`, `rp`.`id_user` AS `id_user`, `rp`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `rp`.`jam_mulai` AS `jam_mulai`, `rp`.`jam_selesai` AS `jam_selesai`, `rp`.`keperluan` AS `keperluan`, `r`.`nama_ruangan` AS `nama_ruangan` FROM (`riwayat_pemesanan` `rp` join `ruangan` `r` on(`rp`.`id_ruangan` = `r`.`id_ruangan`)) ;
 
 --
 -- Indexes for dumped tables
@@ -229,7 +290,8 @@ ALTER TABLE `peminjaman`
   ADD PRIMARY KEY (`id_peminjaman`),
   ADD KEY `idx_id_ruangan` (`id_ruangan`),
   ADD KEY `idx_id_user` (`id_user`),
-  ADD KEY `idx_tanggal_peminjaman` (`tanggal_peminjaman`);
+  ADD KEY `idx_tanggal_peminjaman` (`tanggal_peminjaman`),
+  ADD KEY `idx_ruangan_tanggal` (`id_ruangan`,`tanggal_peminjaman`);
 
 --
 -- Indexes for table `riwayat_pemesanan`
@@ -274,13 +336,13 @@ ALTER TABLE `notifikasi`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pemesanan`
 --
 ALTER TABLE `riwayat_pemesanan`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ruangan`
@@ -292,7 +354,7 @@ ALTER TABLE `ruangan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

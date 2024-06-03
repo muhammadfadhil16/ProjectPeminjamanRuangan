@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,6 +64,7 @@ body {
              
               <hr class="my-4">
               <p class="mt-3">Belum Punya akun? <a href="<?php echo BASE_URL."index.php?page=module/user/register"; ?>" class="text-reset">Daftar disini</a></p>
+              <p class="mt-3">Login sebagai Admin? <a href="<?php echo BASE_URL."index.php?page=module/admin/login_admin"; ?>"class="text-reset">Login sebagai Admin</a></p>
             </form>
           </div>
         </div>
