@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2024 at 05:15 PM
+-- Generation Time: Jun 03, 2024 at 06:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `notifikasi` (
   `id_user` int(11) DEFAULT NULL,
   `isi_notifikasi` text DEFAULT NULL,
   `waktu` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` SET('belum_dibaca','dibaca') DEFAULT 'belum_dibaca'
+  `status` set('belum_dibaca','dibaca') DEFAULT 'belum_dibaca'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -56,14 +56,14 @@ CREATE TABLE `notifikasi` (
 --
 
 CREATE TABLE `peminjaman` (
-  `id_peminjaman` int(11) NOT NULL,S
+  `id_peminjaman` int(11) NOT NULL,
   `id_ruangan` int(11) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
   `tanggal_peminjaman` date DEFAULT NULL,
   `jam_mulai` time DEFAULT NULL,
   `jam_selesai` time DEFAULT NULL,
   `keperluan` text DEFAULT NULL,
-  `status` SET('dipinjam','selesai') NOT NULL DEFAULT 'dipinjam'
+  `status` set('dipinjam','selesai') NOT NULL DEFAULT 'dipinjam'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -72,7 +72,8 @@ CREATE TABLE `peminjaman` (
 
 INSERT INTO `peminjaman` (`id_peminjaman`, `id_ruangan`, `id_user`, `tanggal_peminjaman`, `jam_mulai`, `jam_selesai`, `keperluan`, `status`) VALUES
 (1, 1, 4, '2024-05-02', '14:30:00', '16:00:00', NULL, 'dipinjam'),
-(2, 1, 5, '2024-05-22', '22:07:00', '23:07:00', 'uts', 'dipinjam');
+(2, 1, 5, '2024-05-22', '22:07:00', '23:07:00', 'uts', 'dipinjam'),
+(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS', 'dipinjam');
 
 --
 -- Triggers `peminjaman`
@@ -109,7 +110,8 @@ CREATE TABLE `riwayat_pemesanan` (
 
 INSERT INTO `riwayat_pemesanan` (`id_riwayat`, `id_ruangan`, `id_user`, `tanggal_peminjaman`, `jam_mulai`, `jam_selesai`, `keperluan`) VALUES
 (1, 1, 5, '2024-05-16', '22:17:00', '23:17:00', 'coding'),
-(2, 1, 5, '2024-05-16', '22:17:00', '23:17:00', 'coding');
+(2, 1, 5, '2024-05-16', '22:17:00', '23:17:00', 'coding'),
+(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS');
 
 -- --------------------------------------------------------
 
@@ -121,7 +123,7 @@ CREATE TABLE `ruangan` (
   `id_ruangan` int(11) NOT NULL,
   `nama_ruangan` varchar(50) NOT NULL,
   `kapasitas` int(11) DEFAULT NULL,
-  `tersedia` SET('1','0') NOT NULL
+  `tersedia` set('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -133,7 +135,49 @@ INSERT INTO `ruangan` (`id_ruangan`, `nama_ruangan`, `kapasitas`, `tersedia`) VA
 (2, 'D02', 50, '1'),
 (3, 'D03', 50, '1'),
 (4, 'D04', 50, '1'),
-(5, 'D05', 50, '1');
+(5, 'D05', 50, '1'),
+(6, 'D06', 50, ''),
+(7, 'D07', 30, ''),
+(8, 'D08', 30, ''),
+(9, 'D09', 30, ''),
+(10, 'D10', 30, ''),
+(11, 'D11', 30, ''),
+(12, 'D12', 30, ''),
+(13, 'D13', 30, ''),
+(14, 'D14', 30, ''),
+(15, 'D15', 30, ''),
+(16, 'D16', 30, ''),
+(17, 'D17', 30, ''),
+(18, 'D18', 30, ''),
+(19, 'D19', 30, ''),
+(20, 'D20', 30, ''),
+(21, 'D21', 50, ''),
+(22, 'D22', 50, ''),
+(23, 'D23', 40, ''),
+(24, 'D24', 40, ''),
+(25, 'D25', 40, ''),
+(26, 'D26', 40, ''),
+(27, 'D27', 40, ''),
+(28, 'D28', 40, ''),
+(29, 'D29', 40, ''),
+(30, 'D30', 40, ''),
+(31, 'D31', 40, ''),
+(32, 'D32', 40, ''),
+(33, 'D33', 40, ''),
+(34, 'D34', 40, ''),
+(35, 'D35', 40, ''),
+(36, 'D36', 40, ''),
+(37, 'D37', 40, ''),
+(38, 'D38', 40, ''),
+(39, 'D39', 40, ''),
+(40, 'D40', 40, ''),
+(41, 'D41', 40, ''),
+(42, 'D42', 40, ''),
+(43, 'D43', 40, ''),
+(44, 'D44', 40, ''),
+(45, 'D45', 40, ''),
+(46, 'D46', 40, ''),
+(47, 'D47', 40, '');
 
 -- --------------------------------------------------------
 
@@ -145,7 +189,7 @@ CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` SET('mahasiswa','admin') NOT NULL
+  `role` set('mahasiswa','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -154,7 +198,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `email`, `password`, `role`) VALUES
 (4, 'd1041221017@gmail.com', '202cb962ac59075b964b07152d234b70', ''),
-(5, 'd10141221017@gmail.com', '$2y$10$  75SyFLcMhpQejV6LBWveBQ6cfE30sAp35HXjAZwASFweScXjqoy', 'mahasiswa');
+(5, 'd10141221017@gmail.com', '$2y$10$vi75SyFLcMhpQejV6LBWveBQ6cfE30sAp35HXjAZwASFweScXjqoy', 'mahasiswa'),
+(6, 'user@gmail.com', '$2y$10$xnNDk8UFlup5Dn2qPSjijO1UIhWsBvQYDo19jTPYFpE3Zbp/NXDeO', '');
 
 --
 -- Indexes for dumped tables
@@ -229,25 +274,25 @@ ALTER TABLE `notifikasi`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pemesanan`
 --
 ALTER TABLE `riwayat_pemesanan`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ruangan`
 --
 ALTER TABLE `ruangan`
-  MODIFY `id_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_ruangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
