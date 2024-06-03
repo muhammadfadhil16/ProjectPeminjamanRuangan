@@ -17,6 +17,17 @@ if (strtotime($jam_mulai) >= strtotime($jam_selesai)) {
     exit;
 }
 
+// Validasi waktu peminjaman berada dalam rentang 07:00 - 00:00
+$jam_awal_valid = strtotime('07:00:00');
+$jam_akhir_valid = strtotime('00:00:00');
+$jam_mulai_time = strtotime($jam_mulai);
+$jam_selesai_time = strtotime($jam_selesai);
+
+if ($jam_mulai_time < $jam_awal_valid || $jam_selesai_time > $jam_akhir_valid) {
+    header("location: ".BASE_URL."index.php?page=module/BookingRuangan/user_bookings&notif=jam_invalid");
+    exit;
+}
+
 // Cek ketersediaan ruangan
 $check_query = "SELECT * FROM Peminjaman 
                 WHERE id_ruangan = '$room_id' 

@@ -12,7 +12,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="vh-100">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -38,56 +38,13 @@
 
     <link rel="icon" href="images/logopng.png" type="image/icon type">
 
-<<<<<<< HEAD
     <title>BookingRoomFTUNTAN</title>
-    <style>
-  /* Styling for the logout button */
-  a {
-    text-decoration: none;
-  }
+ 
 
-  button[type="submit"] {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  button[type="submit"]:hover {
-    background-color: #2980b9;
-  }
-</style>
-=======
     <title>Peminjaman Ruangan Fakultas Teknik</title>
->>>>>>> 92bfdcaff5cb03a1618798d791fd3943c0a467b3
   </head>
   <body>
     <div class="content">
-      <?php
-    if($id_user && $page != "module/user/login"){
-      ?>
-      <a href="<?php echo BASE_URL."index.php?page=module/user/logout"; ?>">
-<<<<<<< HEAD
-            <button type="submit">Logout</button>
-      </a>
-=======
-                        <button type="submit" class="container-fluid">Logout</button>
-                    </a>
->>>>>>> 92bfdcaff5cb03a1618798d791fd3943c0a467b3
-    <?php
-    }
-    if(!$id_user && $page != "module/user/login") {
-      echo $id_user;
-      ?>
-      <a href="<?php echo BASE_URL."index.php?page=module/user/login"; ?>">
-                        <button type="submit" class="container-fluid">Login</button>
-                    </a>
-    <?php
-    }
-  ?>
       <?php
         // include_once("layout/sidebar.php");
 
@@ -100,6 +57,9 @@
         }
       ?>
     </div>
+    <?php
+      include_once("layout/header.php");
+    ?>
     <?php
       include_once("layout/footer.php");
     ?>

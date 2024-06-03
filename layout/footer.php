@@ -1,5 +1,5 @@
-<footer class="bg-dark text-white mt-0">
-    <div class="container py-4">
+<footer>
+    <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <h2 class="mb-3">Tentang Kami</h2>
@@ -18,24 +18,22 @@
 </footer>
 
 <style>
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
     footer {
-        background-color: #002d72;
-        color: #fff;
-        padding: 40px 0;
-    }
-
-    .social-icons li {
-        display: inline-block;
-        margin-right: 10px;
-    }
-
-    .social-icons li a {
-        color: #fff;
-        font-size: 20px;
-        transition: color 0.3s ease;
-    }
-
-    .social-icons li a:hover {
-        color: #f1f1f1;
-    }
+    background-color: #002d72;
+    color: #fff;
+    padding: 40px 0;
+    width: 100%;
+    margin-top: auto;
+}
 </style>

@@ -1,3 +1,20 @@
+<?php
+include_once("function/koneksi.php");
+include_once("function/helper.php");
+
+// Memeriksa apakah pengguna telah login
+$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false;
+
+if (!$id_user) {
+    header("Location: login.php");
+    exit;
+}
+
+// Mendapatkan riwayat pemesanan dari database
+$query = "SELECT r.nama_ruangan, r.kapasitas FROM ruangan r ORDER BY r.nama_ruangan";
+$result = mysqli_query($conn, $query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,189 +22,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Room</title>
     <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS Anda -->
-    <style>
-        /* General styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Header styles */
-        h1 {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        /* Table styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        /* Form styles */
-        form {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        label {
-            margin-top: 10px;
-        }
-
-        input[type="date"],
-        input[type="time"],
-        input[type="text"],
-        select {
-            margin-top: 5px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button[type="submit"] {
-            margin-top: 20px;
-            padding: 10px;
-            border: none;
-            background-color: #002d72;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #001a3d;
-        }
-
-        /* Notification styles */
-        .notification {
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.5s, transform 0.5s;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            max-width: 300px;
-        }
-
-        .notification.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
-
-        .error {
-            color: #a94442;
-            background-color: #f2dede;
-            border-color: #ebccd1;
-        }
-    </style>
+    <link rel="stylesheet" href="booking_ruangan.css"> <!-- Link ke file CSS khusus -->
 </head>
 <body>
-    <h1>Peminjaman Ruangan Fakultas Teknik</h1>
-    <div id="notification" class="notification"></div> <!-- Elemen notifikasi -->
+    <div class="container">
+        <h1>Peminjaman Ruangan Fakultas Teknik</h1>
+        <div id="notification" class="notification"></div> <!-- Elemen notifikasi -->
 
-    <label for="capacityFilter">Filter berdasarkan kapasitas:</label>
-    <select id="capacityFilter" onchange="filterRooms()">
-        <option value="all">Semua Kapasitas</option>
-        <option value="30">30</option>
-        <option value="40">40</option>
-        <option value="50">50</option>
-    </select>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Nama Ruangan</th>
-                <th>Kapasitas</th>
-            </tr>
-        </thead>
-        <tbody id="roomTable">
-        <?php
-            $notif = isset($_GET['notif']) ? $_GET['notif'] : false;
-            $message = '';
-
-            if($notif == "jam"){
-                $message = "Jam mulai harus lebih dari jam selesai";
-                echo "<script type='text/javascript'>showNotification('$message', 'error');</script>";
-            } else if($notif == "tidaktersedia"){
-                $message = "Ruangan sedang tidak tersedia";
-                echo "<script type='text/javascript'>showNotification('$message', 'error');</script>";
-            } else if($notif == "berhasil") {
-                $message = "Ruangan berhasil dipesan";
-                echo "<script type='text/javascript'>showNotification('$message', 'success');</script>";
-            } else if($notif == "gagal") {
-                $message = "Gagal memesan ruangan";
-                echo "<script type='text/javascript'>showNotification('$message', 'error');</script>";
-            }
-        ?>
-        <?php
-            $query_ruangan = "SELECT * FROM ruangan";
-            $result_ruangan = mysqli_query($conn, $query_ruangan);
-            while ($row_ruangan = mysqli_fetch_assoc($result_ruangan)) {
-                $ruangan_id = $row_ruangan['id_ruangan'];
-
-                // Cek apakah ada peminjaman pada waktu yang dipilih
-                $peminjaman_query = mysqli_query($conn, "SELECT * FROM Peminjaman WHERE id_ruangan = $ruangan_id AND tanggal_peminjaman = CURDATE() AND jam_mulai = '09:00:00' AND jam_selesai = '11:00:00'");
-                $sudah_dipinjam = mysqli_num_rows($peminjaman_query) > 0;
-
-                // Tampilkan informasi ruangan dan notifikasi
-                echo '<tr data-capacity="' . $row_ruangan['kapasitas'] . '">';
-                echo '<td>' . $row_ruangan['nama_ruangan'] . '</td>';
-                echo '<td>' . $row_ruangan['kapasitas'] . '</td>';
-                echo '</tr>';
-            }
-        ?>
-        </tbody>
-    </table>
-
-    <h2>Pilih Ruangan dan Waktu Peminjaman</h2>
-    <form action="<?php echo BASE_URL."module/BookingRuangan/proses_booking.php";?>" method="POST">
-        <label for="room">Pilih Ruangan:</label>
-        <select name="room_id" id="room" required>
-            <?php
-            $query_ruangan = "SELECT * FROM ruangan";
-            $result_ruangan = mysqli_query($conn, $query_ruangan);
-            while ($row_ruangan = mysqli_fetch_assoc($result_ruangan)) {
-                echo '<option value="' . $row_ruangan['id_ruangan'] . '">' . $row_ruangan['nama_ruangan'] . '</option>';
-            }
-            ?>
+        <label for="capacityFilter">Filter berdasarkan kapasitas:</label>
+        <select id="capacityFilter" onchange="filterRooms()">
+            <option value="all">Semua Kapasitas</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
         </select>
-        <input type="hidden" value="<?php echo $id_user;?>" name="id_user">
-        <label for="date">Tanggal Peminjaman:</label>
-        <input type="date" name="tanggal_peminjaman" id="date" required>
-        <label for="start">Jam Mulai:</label>
-        <input type="time" name="jam_mulai" id="start" required>
-        <label for="end">Jam Selesai:</label>
-        <input type="time" name="jam_selesai" id="end" required>
-        <label for="keperluan">Keperluan:</label>
-        <input type="text" name="keperluan" id="keperluan" required>
-        <button type="submit"  name="submit" style="border-radius: 12px">Book Room</button>
-    </form>
+
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true">
+                    <table class="table table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nama Ruangan</th>
+                                <th scope="col">Kapasitas</th>
+                            </tr>
+                        </thead>
+                        <tbody id="roomTable">
+                            <?php if (mysqli_num_rows($result) > 0): ?>
+                                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                    <tr class="room-item" data-capacity="<?php echo $row['kapasitas']; ?>">
+                                        <td><?php echo $row['nama_ruangan']; ?></td>
+                                        <td><?php echo $row['kapasitas']; ?></td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="2">Tidak ada ruangan yang tersedia.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <h2>Pilih Ruangan dan Waktu Peminjaman</h2>
+        <form id="bookingForm" action="<?php echo BASE_URL . "module/BookingRuangan/proses_booking.php"; ?>" method="POST" onsubmit="return validateBookingTime()">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="room">Pilih Ruangan:</label>
+                    <select name="room_id" id="room" class="form-control" required>
+                        <?php
+                        $query_ruangan = "SELECT * FROM ruangan";
+                        $result_ruangan = mysqli_query($conn, $query_ruangan);
+                        while ($row_ruangan = mysqli_fetch_assoc($result_ruangan)) {
+                            echo '<option value="' . $row_ruangan['id_ruangan'] . '">' . $row_ruangan['nama_ruangan'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="date">Tanggal Peminjaman:</label>
+                    <input type="date" name="tanggal_peminjaman" id="date" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="start">Jam Mulai:</label>
+                    <input type="time" name="jam_mulai" id="start" class="form-control" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="end">Jam Selesai:</label>
+                    <input type="time" name="jam_selesai" id="end" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="keperluan">Keperluan:</label>
+                <input type="text" name="keperluan" id="keperluan" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit" class="btn btn-primary">Book Room</button>
+            </div>
+        </form>
+
+        <button type="button" class="btn btn-primary">
+            <a href="<?php echo BASE_URL . 'index.php?page=home'; ?>" style="color: white; text-decoration: none;">Kembali</a>
+        </button>
+    </div>
 
     <script>
         function showNotification(message, type) {
@@ -206,7 +127,7 @@
 
         function filterRooms() {
             const filter = document.getElementById('capacityFilter').value;
-            const rows = document.querySelectorAll('#roomTable tr');
+            const rows = document.querySelectorAll('.room-item');
             rows.forEach(row => {
                 const capacity = row.getAttribute('data-capacity');
                 if (filter === 'all' || filter === capacity) {
@@ -216,7 +137,32 @@
                 }
             });
         }
+
+        // Validasi waktu di sisi klien
+        function validateBookingTime() {
+            const jamMulai = document.getElementById('start').value;
+            const jamSelesai = document.getElementById('end').value;
+
+            const jamMulaiTime = new Date('1970-01-01T' + jamMulai);
+            const jamSelesaiTime = new Date('1970-01-01T' + jamSelesai);
+            const jamAwalValid = new Date('1970-01-01T07:00:00');
+            const jamAkhirValid = new Date('1970-01-01T17:00:00');
+
+            if (jamMulaiTime < jamAwalValid || jamSelesaiTime > jamAkhirValid) {
+                showNotification("Waktu peminjaman hanya dapat dilakukan dari jam 7 pagi hingga jam 5 sore.", 'error');
+                return false;
+            }
+
+            return true;
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            if (!validateBookingTime()) {
+                event.preventDefault();
+            }
+        });
     </script>
-    <a href="<?php echo BASE_URL."index.php?page=home"; ?>"><button type="submit" style="border-radius: 12px;">Kembali</button></a>
 </body>
 </html>
+
+<?php mysqli_close($conn); ?>

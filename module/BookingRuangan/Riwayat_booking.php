@@ -18,7 +18,6 @@ $query = "SELECT r.nama_ruangan, rp.id_ruangan, rp.tanggal_peminjaman, rp.jam_mu
           ORDER BY rp.tanggal_peminjaman DESC";
 
 $result = mysqli_query($conn, $query);
-
 ?>
 
 <!DOCTYPE html>
@@ -26,86 +25,12 @@ $result = mysqli_query($conn, $query);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="booking_ruangan.css"/>
     <title>Riwayat Pemesanan</title>
     <style>
-        /* Resetting default margin and padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Menambahkan padding-top untuk menghindari tumpang tindih dengan header */
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f7fa;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .table-scroll {
-            max-height: 400px; /* Ubah ketinggian maksimum sesuai kebutuhan */
-            overflow-y: auto;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .table thead {
-            background-color: #002d72;
-            color: #fff;
-        }
-
-        .table th, .table td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        .table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .table tbody tr:hover {
-            background-color: #e0e0e0;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            background-color: #002d72;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #001a3d;
-        }
-
-        @media screen and (max-width: 768px) {
-            .card {
-                width: 90%;
-            }
-
-            .table-scroll {
-                max-height: 300px; /* Ubah ketinggian maksimum sesuai kebutuhan */
-            }
+            padding-top: 70px; /* Sesuaikan nilai ini dengan tinggi header Anda */
         }
     </style>
 </head>
@@ -161,7 +86,9 @@ $result = mysqli_query($conn, $query);
             </div>
         </div>
     </section>
-    <a href="<?= BASE_URL . "index.php?page=home"; ?>"><button class="btn" style="border-radius: 12px;">Kembali</button></a>
+    <button type="button" class="btn btn-primary">
+        <a href="<?php echo BASE_URL . "index.php?page=home"; ?>" style="color: white; text-decoration: none;">Kembali</a>
+    </button>
 </body>
 </html>
 
