@@ -46,7 +46,7 @@ CREATE TABLE `notifikasi` (
   `id_user` int(11) DEFAULT NULL,
   `isi_notifikasi` text DEFAULT NULL,
   `waktu` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` enum('belum_dibaca','dibaca') DEFAULT 'belum_dibaca'
+  `status` SET('belum_dibaca','dibaca') DEFAULT 'belum_dibaca'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -56,14 +56,14 @@ CREATE TABLE `notifikasi` (
 --
 
 CREATE TABLE `peminjaman` (
-  `id_peminjaman` int(11) NOT NULL,
+  `id_peminjaman` int(11) NOT NULL,S
   `id_ruangan` int(11) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
   `tanggal_peminjaman` date DEFAULT NULL,
   `jam_mulai` time DEFAULT NULL,
   `jam_selesai` time DEFAULT NULL,
   `keperluan` text DEFAULT NULL,
-  `status` enum('dipinjam','selesai') NOT NULL DEFAULT 'dipinjam'
+  `status` SET('dipinjam','selesai') NOT NULL DEFAULT 'dipinjam'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -121,7 +121,7 @@ CREATE TABLE `ruangan` (
   `id_ruangan` int(11) NOT NULL,
   `nama_ruangan` varchar(50) NOT NULL,
   `kapasitas` int(11) DEFAULT NULL,
-  `tersedia` enum('1','0') NOT NULL
+  `tersedia` SET('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -145,7 +145,7 @@ CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('mahasiswa','admin') NOT NULL
+  `role` SET('mahasiswa','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `email`, `password`, `role`) VALUES
 (4, 'd1041221017@gmail.com', '202cb962ac59075b964b07152d234b70', ''),
-(5, 'd10141221017@gmail.com', '$2y$10$vi75SyFLcMhpQejV6LBWveBQ6cfE30sAp35HXjAZwASFweScXjqoy', 'mahasiswa');
+(5, 'd10141221017@gmail.com', '$2y$10$  75SyFLcMhpQejV6LBWveBQ6cfE30sAp35HXjAZwASFweScXjqoy', 'mahasiswa');
 
 --
 -- Indexes for dumped tables

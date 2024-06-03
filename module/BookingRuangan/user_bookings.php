@@ -2,6 +2,10 @@
 include_once("function/koneksi.php");
 include_once("function/helper.php");
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Memeriksa apakah pengguna telah login
 $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false;
 
@@ -13,6 +17,27 @@ if (!$id_user) {
 // Mendapatkan riwayat pemesanan dari database
 $query = "SELECT r.nama_ruangan, r.kapasitas FROM ruangan r ORDER BY r.nama_ruangan";
 $result = mysqli_query($conn, $query);
+
+$notif = isset($_GET['notif']) ? $_GET['notif'] : false;
+$message = '';
+
+switch($notif) {
+    case 'berhasil':
+        $message = 'Peminjaman berhasil!';
+        break;
+    case 'tidaktersedia':
+        $message = 'Ruangan tidak tersedia pada waktu yang dipilih.';
+        break;
+    case 'jam':
+        $message = 'Jam mulai harus lebih awal daripada jam selesai.';
+        break;
+    case 'jam_invalid':
+        $message = 'Waktu peminjaman hanya dapat dilakukan dari jam 7 pagi hingga jam 5 sore.';
+        break;
+    case 'gagal':
+        $message = 'Terjadi kesalahan saat menyimpan data. Silakan coba lagi.';
+        break;
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +50,7 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="booking_ruangan.css"> <!-- Link ke file CSS khusus -->
 </head>
 <body>
-    <div class="container">
+    <div class="container text-align-center">
         <h1>Peminjaman Ruangan Fakultas Teknik</h1>
         <div id="notification" class="notification"></div> <!-- Elemen notifikasi -->
 
@@ -51,8 +76,8 @@ $result = mysqli_query($conn, $query);
                             <?php if (mysqli_num_rows($result) > 0): ?>
                                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                                     <tr class="room-item" data-capacity="<?php echo $row['kapasitas']; ?>">
-                                        <td><?php echo $row['nama_ruangan']; ?></td>
-                                        <td><?php echo $row['kapasitas']; ?></td>
+                                        <td><?php echo htmlspecialchars($row['nama_ruangan']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['kapasitas']); ?></td>
                                     </tr>
                                 <?php endwhile; ?>
                             <?php else: ?>
@@ -76,7 +101,7 @@ $result = mysqli_query($conn, $query);
                         $query_ruangan = "SELECT * FROM ruangan";
                         $result_ruangan = mysqli_query($conn, $query_ruangan);
                         while ($row_ruangan = mysqli_fetch_assoc($result_ruangan)) {
-                            echo '<option value="' . $row_ruangan['id_ruangan'] . '">' . $row_ruangan['nama_ruangan'] . '</option>';
+                            echo '<option value="' . htmlspecialchars($row_ruangan['id_ruangan']) . '">' . htmlspecialchars($row_ruangan['nama_ruangan']) . '</option>';
                         }
                         ?>
                     </select>
@@ -100,14 +125,10 @@ $result = mysqli_query($conn, $query);
                 <label for="keperluan">Keperluan:</label>
                 <input type="text" name="keperluan" id="keperluan" class="form-control" required>
             </div>
-            <div class="form-group">
-                <button type="submit" name="submit" class="btn btn-primary">Book Room</button>
+            <div class="form-group container-fluid d-flex justify-content-center my-3" >
+                <button type="submit" name="submit" class="btn btn-primary" style="width: 50%;">Book Room</button>
             </div>
         </form>
-
-        <button type="button" class="btn btn-primary">
-            <a href="<?php echo BASE_URL . 'index.php?page=home'; ?>" style="color: white; text-decoration: none;">Kembali</a>
-        </button>
     </div>
 
     <script>

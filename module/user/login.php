@@ -16,11 +16,15 @@ body {
   font-size: 0.9rem;
   letter-spacing: 0.05rem;
   padding: 0.75rem 1rem;
+  text-align: center;
 }
 
 .error-message {
   color: red;
   margin-bottom: 10px;
+}
+.mt-3 {
+  text-align: center;
 }
 </style>
 </head>
@@ -56,7 +60,7 @@ body {
                 </label>
               </div>
               <div class="d-grid">
-                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Login</button>
+                <button class="btn btn-primary btn-login text-uppercase fw-bold mx-auto" type="submit">Login</button>
               </div>
              
               <hr class="my-4">

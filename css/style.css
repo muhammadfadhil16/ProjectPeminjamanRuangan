@@ -1,5 +1,5 @@
 * {
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 body {
@@ -108,8 +108,6 @@ a {
   display: none;
 }
 
-.rightnav {
-}
 
 /* topnav end */
 /* ==================================== */
@@ -419,8 +417,7 @@ a .carousel-item img {
                 margin: 0.8rem 0;
               }
 
-              & .card-button {
-              }
+          
 
               & .isi {
                 word-break: break-all;

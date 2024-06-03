@@ -30,7 +30,8 @@ $result = mysqli_query($conn, $query);
     <style>
         /* Menambahkan padding-top untuk menghindari tumpang tindih dengan header */
         body {
-            padding-top: 70px; /* Sesuaikan nilai ini dengan tinggi header Anda */
+            padding-top: 70px;
+         /* Sesuaikan nilai ini dengan tinggi header Anda */
         }
     </style>
 </head>
@@ -86,9 +87,6 @@ $result = mysqli_query($conn, $query);
             </div>
         </div>
     </section>
-    <button type="button" class="btn btn-primary">
-        <a href="<?php echo BASE_URL . "index.php?page=home"; ?>" style="color: white; text-decoration: none;">Kembali</a>
-    </button>
 </body>
 </html>
 

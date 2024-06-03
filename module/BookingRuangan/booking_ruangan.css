@@ -13,9 +13,11 @@ body {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Membuat konten berada di tengah horizontal */
+    justify-content: center; /* Membuat konten berada di tengah vertical */
+    height: 100vh;
 }
 
 .card {
@@ -88,6 +90,7 @@ body {
     background-color: blue;
     color: white;
     text-decoration: none;
+    width: 5px;
 }
 
 .btn-primary:hover a {

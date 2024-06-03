@@ -4,7 +4,7 @@ include_once("../../function/helper.php");
 
 session_start();
 
-$id_user = $_POST['id_user'];
+$id_user = $_SESSION['id_user']; // Ambil dari session
 $room_id = $_POST['room_id'];
 $tanggal_peminjaman = $_POST['tanggal_peminjaman'];
 $jam_mulai = $_POST['jam_mulai'];
@@ -19,7 +19,7 @@ if (strtotime($jam_mulai) >= strtotime($jam_selesai)) {
 
 // Validasi waktu peminjaman berada dalam rentang 07:00 - 00:00
 $jam_awal_valid = strtotime('07:00:00');
-$jam_akhir_valid = strtotime('00:00:00');
+$jam_akhir_valid = strtotime('17:00:00');
 $jam_mulai_time = strtotime($jam_mulai);
 $jam_selesai_time = strtotime($jam_selesai);
 
@@ -29,7 +29,7 @@ if ($jam_mulai_time < $jam_awal_valid || $jam_selesai_time > $jam_akhir_valid) {
 }
 
 // Cek ketersediaan ruangan
-$check_query = "SELECT * FROM Peminjaman 
+$check_query = "SELECT * FROM peminjaman 
                 WHERE id_ruangan = '$room_id' 
                 AND tanggal_peminjaman = '$tanggal_peminjaman' 
                 AND (
@@ -45,7 +45,7 @@ if (mysqli_num_rows($check_result) > 0) {
 }
 
 // Simpan data peminjaman ke database
-$insert_peminjaman_query = "INSERT INTO Peminjaman (id_ruangan, id_user, tanggal_peminjaman, jam_mulai, jam_selesai, keperluan) 
+$insert_peminjaman_query = "INSERT INTO peminjaman (id_ruangan, id_user, tanggal_peminjaman, jam_mulai, jam_selesai, keperluan) 
                             VALUES ('$room_id','$id_user', '$tanggal_peminjaman', '$jam_mulai', '$jam_selesai', '$keperluan')";
 
 $insert_riwayat_query = "INSERT INTO riwayat_pemesanan (id_ruangan, id_user, tanggal_peminjaman, jam_mulai, jam_selesai, keperluan) 
