@@ -39,28 +39,19 @@ switch($notif) {
         break;
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book a Room</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link ke file CSS Anda -->
-    <link rel="stylesheet" href="booking_ruangan.css"> <!-- Link ke file CSS khusus -->
-</head>
-<body>
-    <div class="container text-align-center">
+    <div class="container text-align-center" style="padding-top: 100px;">
         <h1>Peminjaman Ruangan Fakultas Teknik</h1>
         <div id="notification" class="notification"></div> <!-- Elemen notifikasi -->
 
-        <label for="capacityFilter">Filter berdasarkan kapasitas:</label>
+        <div class="filter-container">
+        <label for="capacityFilter">Filter Kapasitas:</label>
         <select id="capacityFilter" onchange="filterRooms()">
             <option value="all">Semua Kapasitas</option>
             <option value="30">30</option>
             <option value="40">40</option>
             <option value="50">50</option>
         </select>
+        </div>
 
         <div class="card">
             <div class="card-body p-0">
@@ -183,7 +174,19 @@ switch($notif) {
             }
         });
     </script>
-</body>
-</html>
 
 <?php mysqli_close($conn); ?>
+
+<style>
+  .filter-container {
+    position: relative;
+    margin-bottom: 10px; /* Atur margin bawah sesuai kebutuhan */
+  }
+
+  .filter-container label,
+  .filter-container select {
+    display: inline-block;
+    margin-right: 10px; /* Atur margin kanan antara label dan select */
+  }
+</style>
+

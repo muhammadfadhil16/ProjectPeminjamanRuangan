@@ -8,93 +8,41 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : false;
-$page = basename($_SERVER['PHP_SELF']);
+// Contoh pengaturan id_user, sesuaikan dengan logika yang sesuai di sistem Anda
+$id_user = 0; // Default value jika user belum login
 
-// Perubahan pada fungsi displayBookingButtons
-function displayBookingButtons($id_user, $page) {
-    // Jika pengguna telah login dan bukan di halaman login/register
-    if ($id_user && $page != 'login.php' && $page != 'register.php') {
-        ?>
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo BASE_URL . 'index.php?page=module/BookingRuangan/user_bookings'; ?>">Booking Ruangan</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="<?php echo BASE_URL . 'index.php?page=module/BookingRuangan/Riwayat_booking'; ?>">Check Booking Status</a>
-        </li>
-        <?php
-    }
+// Simulasi kondisi jika user sudah login
+if (isset($_SESSION['id_user'])) {
+    $id_user = $_SESSION['id_user'];
 }
-
-$hideBookingButtons = $page == 'login.php' || $page == 'register.php';
-
 ?>
+<style>
+    .navbar-brand {
+      font-weight: bold;
+      color: white;
+    }
+    
+  .navbar-nav .nav-link {
+    font-size: 18px; /* Sesuaikan dengan ukuran yang Anda inginkan */
+    font-weight: bold;
+    color: white;
+  }
+</style>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peminjaman Ruangan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            padding-top: 70px; /* Adjusting padding to accommodate fixed navbar */
-            font-family: Arial, sans-serif;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .navbar-brand img {
-            margin-right: 10px;
-            max-height: 30px;
-            width: auto;
-        }
-
-        .logout-btn {
-            margin-left: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .navbar-nav .dropdown-menu {
-                display: none !important; /* Hide dropdown on navbar */
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <nav class="navbar navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="images/Logo UNTAN.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    Peminjaman Ruangan Fakultas Teknik Universitas Tanjungpura
-                </a>
-                <ul class="navbar-nav d-flex flex-row align-items-center">
-                    <?php displayBookingButtons($id_user, $page); ?>
-                    <?php if ($id_user && $page != 'login.php' && $page != 'register.php') : ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo BASE_URL . "/module/user/logout.php"; ?>">Logout</a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Other content in your page goes here -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link" href="<?php echo BASE_URL."index.php?page=module/BookingRuangan/user_bookings"; ?>">BookingRoom</a>
+        <a class="nav-link" href="<?php echo BASE_URL."index.php?page=module/BookingRuangan/Riwayat_booking"; ?>">CheckBook</a>
+        <a class="nav-link disabled" href="<?php echo BASE_URL."index.php?page=module/user/login"; ?>" tabindex="-1" aria-disabled="true">Logout</a>
+      </div>
+    </div>
+  </div>
+</nav>

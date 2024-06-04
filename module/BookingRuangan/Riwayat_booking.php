@@ -19,12 +19,6 @@ $query = "SELECT nama_ruangan, id_ruangan, tanggal_peminjaman, jam_mulai, jam_se
 $result = mysqli_query($conn, $query);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="booking_ruangan.css"/>
     <title>Riwayat Pemesanan</title>
     <style>
         /* Menambahkan padding-top untuk menghindari tumpang tindih dengan header */
@@ -33,9 +27,8 @@ $result = mysqli_query($conn, $query);
          /* Sesuaikan nilai ini dengan tinggi header Anda */
         }
     </style>
-</head>
-<body>
-    <section class="intro">
+
+    <section class="intro" style="padding-top: 70px;">
         <div class="container">
             <div class="card">
                 <div class="card-body p-0">
@@ -86,7 +79,7 @@ $result = mysqli_query($conn, $query);
             </div>
         </div>
     </section>
-</body>
-</html>
+
+
 
 <?php mysqli_close($conn); ?>

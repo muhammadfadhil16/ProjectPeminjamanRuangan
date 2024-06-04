@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2024 at 09:20 PM
+-- Generation Time: Jun 03, 2024 at 10:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -103,10 +103,7 @@ CREATE TABLE `peminjaman` (
 --
 
 INSERT INTO `peminjaman` (`id_peminjaman`, `id_ruangan`, `id_user`, `tanggal_peminjaman`, `jam_mulai`, `jam_selesai`, `keperluan`, `status`) VALUES
-(1, 1, 4, '2024-05-02', '14:30:00', '16:00:00', NULL, 'dipinjam'),
-(2, 1, 5, '2024-05-22', '22:07:00', '23:07:00', 'uts', 'dipinjam'),
-(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS', 'dipinjam'),
-(4, 4, 6, '2024-06-05', '07:30:00', '11:32:00', 'makan', 'dipinjam');
+(3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS', 'dipinjam');
 
 --
 -- Triggers `peminjaman`
@@ -145,7 +142,26 @@ INSERT INTO `riwayat_pemesanan` (`id_riwayat`, `id_ruangan`, `id_user`, `tanggal
 (1, 1, 5, '2024-05-16', '22:17:00', '23:17:00', 'coding'),
 (2, 1, 5, '2024-05-16', '22:17:00', '23:17:00', 'coding'),
 (3, 1, 6, '2024-06-05', '09:37:00', '15:37:00', 'UAS'),
-(4, 4, 6, '2024-06-05', '07:30:00', '11:32:00', 'makan');
+(4, 4, 6, '2024-06-05', '07:30:00', '11:32:00', 'makan'),
+(5, 2, 6, '2024-06-05', '08:22:00', '11:22:00', 'UAS MBD');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `riwayat_pemesanan_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `riwayat_pemesanan_view` (
+`id_riwayat` int(11)
+,`id_ruangan` int(11)
+,`id_user` int(11)
+,`tanggal_peminjaman` date
+,`jam_mulai` time
+,`jam_selesai` time
+,`keperluan` text
+,`nama_ruangan` varchar(50)
+,`nama_user` varchar(100)
+);
 
 -- --------------------------------------------------------
 
@@ -162,6 +178,7 @@ CREATE TABLE `riwayat_peminjaman_view` (
 ,`jam_selesai` time
 ,`keperluan` text
 ,`nama_ruangan` varchar(50)
+,`email` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -256,11 +273,20 @@ INSERT INTO `user` (`id_user`, `email`, `password`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure for view `riwayat_pemesanan_view`
+--
+DROP TABLE IF EXISTS `riwayat_pemesanan_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `riwayat_pemesanan_view`  AS SELECT `rp`.`id_riwayat` AS `id_riwayat`, `rp`.`id_ruangan` AS `id_ruangan`, `rp`.`id_user` AS `id_user`, `rp`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `rp`.`jam_mulai` AS `jam_mulai`, `rp`.`jam_selesai` AS `jam_selesai`, `rp`.`keperluan` AS `keperluan`, `r`.`nama_ruangan` AS `nama_ruangan`, `u`.`email` AS `nama_user` FROM ((`riwayat_pemesanan` `rp` join `ruangan` `r` on(`rp`.`id_ruangan` = `r`.`id_ruangan`)) join `user` `u` on(`rp`.`id_user` = `u`.`id_user`)) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `riwayat_peminjaman_view`
 --
 DROP TABLE IF EXISTS `riwayat_peminjaman_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `riwayat_peminjaman_view`  AS SELECT `rp`.`id_riwayat` AS `id_riwayat`, `rp`.`id_ruangan` AS `id_ruangan`, `rp`.`id_user` AS `id_user`, `rp`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `rp`.`jam_mulai` AS `jam_mulai`, `rp`.`jam_selesai` AS `jam_selesai`, `rp`.`keperluan` AS `keperluan`, `r`.`nama_ruangan` AS `nama_ruangan` FROM (`riwayat_pemesanan` `rp` join `ruangan` `r` on(`rp`.`id_ruangan` = `r`.`id_ruangan`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `riwayat_peminjaman_view`  AS SELECT `rp`.`id_riwayat` AS `id_riwayat`, `rp`.`id_ruangan` AS `id_ruangan`, `rp`.`id_user` AS `id_user`, `rp`.`tanggal_peminjaman` AS `tanggal_peminjaman`, `rp`.`jam_mulai` AS `jam_mulai`, `rp`.`jam_selesai` AS `jam_selesai`, `rp`.`keperluan` AS `keperluan`, `r`.`nama_ruangan` AS `nama_ruangan`, `u`.`email` AS `email` FROM ((`riwayat_pemesanan` `rp` join `ruangan` `r` on(`rp`.`id_ruangan` = `r`.`id_ruangan`)) join `user` `u` on(`rp`.`id_user` = `u`.`id_user`)) ;
 
 --
 -- Indexes for dumped tables
@@ -336,13 +362,13 @@ ALTER TABLE `notifikasi`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pemesanan`
 --
 ALTER TABLE `riwayat_pemesanan`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ruangan`

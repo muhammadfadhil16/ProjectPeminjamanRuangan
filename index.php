@@ -21,6 +21,7 @@
       src="https://kit.fontawesome.com/e0bb680df5.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="<?php echo BASE_URL."css/style.css"; ?>"/>
     <link rel="stylesheet" href="<?php echo BASE_URL."css/responsive.css"; ?>"/>
     <link
@@ -35,6 +36,11 @@
     <link
       href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet"
     />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link rel="icon" href="images/logopng.png" type="image/icon type">
 

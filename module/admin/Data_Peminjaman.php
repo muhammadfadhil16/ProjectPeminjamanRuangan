@@ -33,7 +33,12 @@ $filter_tanggal = isset($_GET['filter_tanggal']) ? $_GET['filter_tanggal'] : '';
 
 // Menyusun query untuk filter
 $query = "SELECT u.email as nama_user, r.nama_ruangan, rp.id_peminjaman, rp.tanggal_peminjaman, rp.jam_mulai, rp.jam_selesai, rp.keperluan,
-          (SELECT COUNT(*) FROM peminjaman p WHERE p.id_ruangan = r.id_ruangan) as total_peminjaman
+          (SELECT COUNT(*) FROM peminjaman p WHERE p.id_ruangan = r.id_ruangan) as total_peminjaman,
+          TIMESTAMPDIFF(HOUR, rp.jam_mulai, rp.jam_selesai) as durasi_jam,
+          CASE
+              WHEN TIMESTAMPDIFF(HOUR, rp.jam_mulai, rp.jam_selesai) > 2 THEN '> 2 Jam'
+              ELSE '<= 2 Jam'
+          END as durasi_kategori
           FROM peminjaman rp
           JOIN ruangan r ON rp.id_ruangan = r.id_ruangan
           JOIN user u ON rp.id_user = u.id_user";
@@ -77,6 +82,7 @@ $result = mysqli_query($conn, $query);
                                 <th scope="col">Jam Mulai</th>
                                 <th scope="col">Jam Selesai</th>
                                 <th scope="col">Durasi (jam)</th>
+                                <th scope="col">Durasi Kategori</th>
                                 <th scope="col">Keperluan</th>
                                 <th scope="col">Total Peminjaman</th>
                                 <th scope="col">Action</th>
@@ -92,10 +98,11 @@ $result = mysqli_query($conn, $query);
                                         <td><?php echo $row['jam_mulai']; ?></td>
                                         <td><?php echo $row['jam_selesai']; ?></td>
                                         <td><?php echo hitung_durasi($row['jam_mulai'], $row['jam_selesai']); ?></td>
+                                        <td><?php echo $row['durasi_kategori']; ?></td>
                                         <td><?php echo $row['keperluan']; ?></td>
                                         <td><?php echo $row['total_peminjaman']; ?></td>
                                         <td>
-                                            <form action="delete_booking_admin.php" method="POST">
+                                            <form action="<?php echo BASE_URL."/module/admin/delete_booking_admin.php"; ?>" method="POST">
                                                 <input type="hidden" name="id_peminjaman" value="<?= $row['id_peminjaman']; ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                     <i class="fa fa-trash"></i>
@@ -106,7 +113,7 @@ $result = mysqli_query($conn, $query);
                                 <?php endwhile; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="9">Tidak ada peminjaman.</td>
+                                    <td colspan="10">Tidak ada peminjaman.</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>
